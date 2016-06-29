@@ -1,1 +1,0 @@
-INDEX VERSION 1.126+D:\Android_Git\Andorid_Project\.metadata\.plugins\org.eclipse.jdt.core
