@@ -8,6 +8,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.PublicKey;
 
+import javax.security.auth.login.LoginException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.whq.mobilesafe.R;
 import com.whq.mobilesafe.R.layout;
 import com.whq.mobilesafe.R.menu;
@@ -85,13 +90,27 @@ public class SplashActivity extends Activity {
 						InputStream is = connection.getInputStream();
 						//6.将流转换成字符串
 						String jsonString = StreamUtil.stream2String(is);
-						Log.i(tag, jsonString);
+						//7.解释json数据
+						JSONObject jsonObject = new JSONObject(jsonString);
+						String versionName = jsonObject.getString("versionName");
+						String versionDes = jsonObject.getString("versionDes");
+						String versionCode = jsonObject.getString("versionCode");
+						String downloadUrl = jsonObject.getString("downloadUrl");
+						
+						Log.i(tag, versionName);
+						Log.i(tag, versionDes);
+						Log.i(tag, versionCode);
+						Log.i(tag, downloadUrl);
+						
 					}
 					
 				} catch (MalformedURLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
