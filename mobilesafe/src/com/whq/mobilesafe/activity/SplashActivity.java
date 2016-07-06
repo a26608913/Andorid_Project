@@ -6,36 +6,23 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.security.PublicKey;
-import java.util.jar.Attributes.Name;
-
-import javax.security.auth.login.LoginException;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.whq.mobilesafe.R;
-import com.whq.mobilesafe.R.layout;
-import com.whq.mobilesafe.R.menu;
 import com.whq.mobilesafe.utils.StreamUtil;
 import com.whq.mobilesafe.utils.ToastUtil;
-
-import android.R.integer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.os.ResultReceiver;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
@@ -43,13 +30,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Path;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SplashActivity extends Activity {
 
@@ -357,7 +339,6 @@ public class SplashActivity extends Activity {
 						try {
 							Thread.sleep(4000 - (endTime - startTime));
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
@@ -369,10 +350,9 @@ public class SplashActivity extends Activity {
 		}.start();
 
 		/*
-		 * 第二种方法通过接口方式写线程 new Thread(new Runnable() {
-		 * 
-		 * @Override public void run() { // TODO Auto-generated method stub
-		 * 
+		 * 第二种方法通过接口方式写线程
+		 *  new Thread(new Runnable() {
+		 * public void run() { 
 		 * } }){}.start();
 		 */
 	}
@@ -392,7 +372,6 @@ public class SplashActivity extends Activity {
 			return packageInfo.versionCode;
 
 		} catch (NameNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -413,7 +392,6 @@ public class SplashActivity extends Activity {
 			return packageInfo.versionName;
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
