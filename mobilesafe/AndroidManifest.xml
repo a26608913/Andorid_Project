@@ -9,7 +9,7 @@
         android:targetSdkVersion="17" />
     <!-- 第二种方法去头 android:theme="@android:style/Theme.Light.NoTitleBar" > -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.whq.mobilesafe.activity.HomeActivity" />
+        <activity android:name="com.whq.mobilesafe.activity.SettingActivity" />
     </application>
 
 </manifest>

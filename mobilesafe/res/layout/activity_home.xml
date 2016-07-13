@@ -4,11 +4,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!-- 将对应的属性抽取到样式中 -->
+    <!-- android:ellipsize="start" 添加省略点的位置 -->
+    <!--
+         跑马灯 想让其滚动必须获取焦点        
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever" 一直滚动
+    -->
+    <!-- 自定义控件达到滚动效果(其实就是重写TextView,让其一直能获取焦点) -->
+
     <TextView
-        android:layout_width="wrap_content"
+        style="@style/TitleStyle"
+        android:text="功能列表" />
+
+    <!--
+         <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HomeActivity"
-        android:textColor="#000"
-        android:textSize="20sp" />
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="习近平：南海诸岛自古以来就是中国领土。中国在南海的领土主权和海洋权益在任何情况下不受所谓菲律宾南海仲裁案裁决的影响。中国不接受任何基于该仲裁裁决的主张和行动。"
+        android:textColor="#000" />
+    -->
+
+    <com.whq.mobilesafe.view.FoucsTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="习近平：南海诸岛自古以来就是中国领土。中国在南海的领土主权和海洋权益在任何情况下不受所谓菲律宾南海仲裁案裁决的影响。中国不接受任何基于该仲裁裁决的主张和行动。"
+        android:textColor="#000" />
+    <!-- numColumns 指定列数 -->
+    <!-- android:verticalSpacing="10dp" 指定内部条目竖直方向的间距 -->
+
+    <GridView
+        android:id="@+id/gv_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:verticalSpacing="10dp" >
+    </GridView>
 
 </LinearLayout>
