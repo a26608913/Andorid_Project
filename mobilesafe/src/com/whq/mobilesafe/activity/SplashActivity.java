@@ -31,6 +31,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class SplashActivity extends Activity {
@@ -93,6 +95,7 @@ public class SplashActivity extends Activity {
 		};
 
 	};
+	private RelativeLayout rl_root;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +107,17 @@ public class SplashActivity extends Activity {
 		initUI();
 		// 初始化数据
 		initData();
+		// 初始化动画
+		initAnimation();
+	}
+
+	/**
+	 * 设置淡入的动画效果
+	 */
+	private void initAnimation() {
+		AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+		alphaAnimation.setDuration(1000 * 5);
+		rl_root.startAnimation(alphaAnimation);
 	}
 
 	/**
@@ -221,7 +235,7 @@ public class SplashActivity extends Activity {
 		 */
 		intent.setDataAndType(Uri.fromFile(file),
 				"application/vnd.android.package-archive");
-		//startActivity(intent);
+		// startActivity(intent);
 		startActivityForResult(intent, 1);
 		/*
 		 * <intent-filter> <action android:name="android.intent.action.VIEW" />
@@ -232,7 +246,8 @@ public class SplashActivity extends Activity {
 		 */
 
 	}
-	//开启一个Activity后，返回结果的方法
+
+	// 开启一个Activity后，返回结果的方法
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		enterHome();
 		super.onActivityResult(requestCode, resultCode, data);
@@ -350,10 +365,8 @@ public class SplashActivity extends Activity {
 		}.start();
 
 		/*
-		 * 第二种方法通过接口方式写线程
-		 *  new Thread(new Runnable() {
-		 * public void run() { 
-		 * } }){}.start();
+		 * 第二种方法通过接口方式写线程 new Thread(new Runnable() { public void run() { }
+		 * }){}.start();
 		 */
 	}
 
@@ -402,6 +415,7 @@ public class SplashActivity extends Activity {
 	 */
 	private void initUI() {
 		tv_version_name = (TextView) findViewById(R.id.tv_version_name);
+		rl_root = (RelativeLayout) findViewById(R.id.rl_root);
 
 	}
 
