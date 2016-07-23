@@ -13,6 +13,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.whq.mobilesafe.R;
+import com.whq.mobilesafe.utils.SpUtil;
 import com.whq.mobilesafe.utils.StreamUtil;
 import com.whq.mobilesafe.utils.ToastUtil;
 import android.net.Uri;
@@ -276,7 +277,17 @@ public class SplashActivity extends Activity {
 		/*
 		 * json中内容 1.更新版本名称 2.新版本的描述 3.服务器版本号 4.新版本apk下载地址
 		 */
-		checkVersion();
+		if (SpUtil.getBoolean(getApplicationContext(),
+				ConstantValue.OPEN_UPDATE, false)) {
+			checkVersion();
+		} else {
+			// 直接进入主界面
+			// enterHome();
+			// 在主线程尽量不要用Thread.sleep,要用消息机制
+			// sendEmptyMessageDelayed在发送消息4秒后去处理当前状态码ENTER_HOME
+			// ***可以传输对象msg或者状态码what***
+			mHandler.sendEmptyMessageDelayed(ENTER_HOME, 1000 * 4);
+		}
 	}
 
 	private void checkVersion() {
