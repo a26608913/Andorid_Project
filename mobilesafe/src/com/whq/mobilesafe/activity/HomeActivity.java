@@ -1,6 +1,7 @@
 package com.whq.mobilesafe.activity;
 
 import com.whq.mobilesafe.R;
+import com.whq.mobilesafe.utils.Md5Util;
 import com.whq.mobilesafe.utils.SpUtil;
 import com.whq.mobilesafe.utils.ToastUtil;
 
@@ -111,18 +112,19 @@ public class HomeActivity extends Activity {
 		Button bt_submit = (Button) view.findViewById(R.id.bt_submit);
 		Button bt_cancel = (Button) view.findViewById(R.id.bt_cancel);
 		bt_submit.setOnClickListener(new OnClickListener() {
-
+			
 			public void onClick(View v) {
 				EditText et_confirm_psd = (EditText) view
 						.findViewById(R.id.et_confirm_psd);
 				String confirm_psd = et_confirm_psd.getText().toString();
 
 				if (!TextUtils.isEmpty(confirm_psd)) {
+					//将存储在sp中32位的密码获取出来，
 					String psd = SpUtil.getString(getApplicationContext(),ConstantValue.MOBILE_SAFE_PSD, "");
-					if (psd.equals(confirm_psd)) {
+					if (psd.equals(Md5Util.encoder(confirm_psd))) {
 						// 进入手机防盗模块，开启一个新的Activity
-						Intent intent = new Intent(getApplicationContext(),
-								TestActivity.class);
+						//Intent intent = new Intent(getApplicationContext(),TestActivity.class);
+						Intent intent = new Intent(getApplicationContext(),SetupOverActivity.class);
 						startActivity(intent);
 						// 跳转到新的界面后，需要隐藏对话框
 						dialog.dismiss();
@@ -179,13 +181,13 @@ public class HomeActivity extends Activity {
 				if (!TextUtils.isEmpty(psd) && !TextUtils.isEmpty(confirm_psd)) {
 					if (psd.equals(confirm_psd)) {
 						// 进入手机防盗模块，开启一个新的Activity
-						Intent intent = new Intent(getApplicationContext(),
-								TestActivity.class);
+						//Intent intent = new Intent(getApplicationContext(),TestActivity.class);
+						Intent intent = new Intent(getApplicationContext(),SetupOverActivity.class);
 						startActivity(intent);
 						// 跳转到新的界面后，需要隐藏对话框
 						dialog.dismiss();
 						SpUtil.putString(getApplicationContext(),
-								ConstantValue.MOBILE_SAFE_PSD, psd);
+								ConstantValue.MOBILE_SAFE_PSD, Md5Util.encoder(confirm_psd));
 
 					} else {
 						ToastUtil.show(getApplicationContext(), "确认密码错误");
