@@ -4,5 +4,7 @@
     <string name="app_name">mobilesafe</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="sample_device_admin_description">一键激活、锁屏、抹除数据、卸载</string>
+    <string name="sample_device_admin">超级管理员</string>
 
 </resources>

@@ -15,8 +15,6 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    
-    
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- //获取准确GPS坐标的权限 -->
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
@@ -47,6 +45,8 @@
         <activity android:name="com.whq.mobilesafe.activity.Setup3Activity" />
         <activity android:name="com.whq.mobilesafe.activity.Setup4Activity" />
         <activity android:name="com.whq.mobilesafe.activity.ContantListActivity" />
+        <activity android:name="com.whq.mobilesafe.activity.AToolActivity" />
+        <activity android:name="com.whq.mobilesafe.activity.QueryPhoneActivity" />
 
         <receiver android:name="com.whq.mobilesafe.receiver.BootReceiver" >
             <intent-filter>
@@ -55,12 +55,28 @@
         </receiver>
         <receiver android:name="com.whq.mobilesafe.receiver.SmsReceiver" >
             <intent-filter>
+
                 <!-- 为了去关联系统短信的广播对应过滤条件,先将编译版本改为4.1.2 -->
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
                 <action android:name="android." />
             </intent-filter>
         </receiver>
-		<service android:name="com.whq.mobilesafe.service.LocationService" />
+        <receiver
+            android:name="com.whq.mobilesafe.receiver.DeviceAdmin"
+            android:description="@string/sample_device_admin_description"
+            android:label="@string/sample_device_admin"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.mobilesafe"
+                android:resource="@xml/device_admin_sample" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" >
+                </action>
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.whq.mobilesafe.service.LocationService" />
     </application>
 
 </manifest>
